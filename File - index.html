@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SIGN UP AND LOG IN/SEAN</title>
+</head>
+<body>
+   <div class="container">
+       
+    <div class="btn">
+        <h5>PLEASE SIGN UP IF YOU DON'T HAVE AN ACCOUNT</h1>
+       <input type="email" id="sign" placeholder="Username" required>
+        
+       <input type="password" id="sign_p" placeholder="Password" required>
+        <button onclick="signUp()">SIGN UP</button>
+    </div>
+    
+    <div class="btn">
+        <h5>PLEASE ENTER AN ACCOUNT TO LOG IN</h1>
+        <input type="email" id="log" placeholder="Username" required>
+        <input type="password" id="log_p" placeholder="Password" required>
+        <button onclick="logIn()">LOG IN</button>
+    </div>
+   
+   </div>
+</body>
+</html>
+<style>
+    
+    .container{
+        height:80vh;    
+        margin-top:70px;
+        border:5px solid white;
+        background-image:linear-gradient(blue, red);
+        width:auto;
+        margin-right:auto;
+        margin-left:auto;
+        border:12px solid black;
+        border-radius:20px;
+    
+         
+    }
+    .btn{
+       display:flex;
+       justify-content:center;
+       align-items:center;
+       flex-direction:column;
+       margin-top:20px;
+       
+       
+    }
+    input{
+        box-shadow:5px 5px;
+        margin:10px;
+        border-radius:10px;
+        height:30px;
+        width:50%;
+        background-image:linear-gradient(to right,cyan,white) ;
+    }
+    button{
+        box-shadow:5px 5px black;
+        margin:10px;
+        border-radius:10px;
+        height:30px;
+        height:50px;
+        width:30%;
+        background-image:linear-gradient(to right,magenta,blue);
+        font-size:20px;
+        color:white;
+        font-weight:bold;       
+    }
+    button:hover{
+       background-image:linear-gradient(to right,gold,hotpink);
+    }
+    body{
+        background-image:linear-gradient(to right, blue, red)
+    }
+    h5{
+        color:white;
+    }
+@media screen and (min-width:400px){
+    .container{
+        height:40vh;    
+        margin-top:200px;
+        border:5px solid white;
+        background-image:linear-gradient(blue, red);
+        width:auto;
+        margin-right:auto;
+        margin-left:auto;
+        border:12px solid black;
+        border-radius:20px;  
+         
+    }
+    .btn{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        flex-direction:column;
+        margin-top:100px;
+        
+       
+    }
+    input{
+         box-shadow:5px 5px;
+         margin:10px;
+         border-radius:10px;
+         height:20px;
+         background-image:linear-gradient(to right,orange,green) ;
+         height:30px;
+         width:50%;
+    }
+    button{
+         box-shadow:5px 5px black;
+         margin:10px;
+         border-radius:10px;
+         height:30px;
+         height:50px;
+         width:20%;
+         background-image:linear-gradient(to right, green,black) ;
+         color:white;
+         font-weight:bold;
+    }
+    button:hover{
+        background-image:linear-gradient(to right,orange,red);
+    }
+    body{
+        background-image:linear-gradient(to right, blue, red)
+    }
+    h5{
+        color:white;
+    }
+    }
+    
+</style>
+<script>
+    function signUp(){
+        const         user_a=document.getElementById("sign").value;
+password_a=document.getElementById("sign_p"). value;        
+        if(user_a&&password_a!=""){
+            
+            const data = JSON. parse(localStorage.getItem('data'))||[];
+            data.push({
+                username:user_a, 
+                password:password_a
+            });                      localStorage.setItem('data',JSON.stringify(data));
+            console.log(user_a,password_a)
+            document.getElementById("sign"). value='';                  
+            document.getElementById("sign_p"). value='';
+            alert("Successfully Signed Up")
+        }else{
+            alert("SIGN UP FIRST")
+        }
+               
+    }
+    function logIn(){
+        const username=document.getElementById("log").value;
+password=document.getElementById("log_p").value;
+
+const data =JSON.parse(localStorage.getItem('data'))||[];
+
+const user= data.find(user => user.username === username && user.password === password);
+
+if(user){
+    alert("LOGIN SUCCESSFUL");
+    console.log("Logged in user:",username, password);
+}else{
+    alert("INCORRECT USERNAME or PASSWORD PLEASE ENTER AGAIN");
+    console.log("Invalid Input");
+}
+    }
+
+</script>
